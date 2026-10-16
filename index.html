@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taro Ishihara | Engineering Portfolio</title>
+<meta name="description" content="Engineering portfolio of Taro Ishihara, mechanical engineering student at CU Boulder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<meta property="og:title" content="Taro Ishihara | Engineering Portfolio">
+<meta property="og:description" content="Mechanical engineering projects: robot frame design, pipeline inspection robot CAD, research, and fabrication.">
+<meta property="og:image" content="img/cygnus-robot.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f2738'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23fff' text-anchor='middle'%3ETI%3C/text%3E%3C/svg%3E">
+<style>
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: an engineering drawing set. Cool drafting paper, navy ink carried over from the PDF portfolio,
+   each project laid out as a sheet with a monospace title block; one layout-fluid blue accent. */
+:root{
+  --paper:#f3f5f7; --sheet:#ffffff; --ink:#1d2536; --ink-2:#4a5468; --rule:#d5dbe3; --grid:rgba(29,37,54,.045);
+  --accent:#2149c4; --accent-soft:rgba(33,73,196,.09); --band:#1f2738; --band-fg:#eef1f6; --band-2:#aab3c5;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161f; --sheet:#171d29; --ink:#e6eaf1; --ink-2:#a3adbf; --rule:#2b3445; --grid:rgba(230,234,241,.035);
+  --accent:#8aa6ff; --accent-soft:rgba(138,166,255,.12); --band:#0b0f16; --band-fg:#e6eaf1; --band-2:#8e98ab; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161f; --sheet:#171d29; --ink:#e6eaf1; --ink-2:#a3adbf; --rule:#2b3445; --grid:rgba(230,234,241,.035);
+  --accent:#8aa6ff; --accent-soft:rgba(138,166,255,.12); --band:#0b0f16; --band-fg:#e6eaf1; --band-2:#8e98ab; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.02}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.mark{font-family:var(--f-display);font-weight:800;font-stretch:80%;letter-spacing:.02em;text-transform:uppercase;font-size:15px;color:var(--ink);text-decoration:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.nav ul a{color:var(--ink-2);text-decoration:none}
+.nav ul a:hover{color:var(--accent)}
+@media (max-width:640px){.nav ul{gap:14px}.nav ul li.hide-sm{display:none}}
+
+/* hero */
+.hero{padding-block:64px 40px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
+.hero-grid>*{min-width:0}
+.hero h1{font-size:clamp(56px,10.5vw,132px);font-weight:800;font-stretch:72%;letter-spacing:-.01em;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--accent)}
+.hero .role{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin:0 0 20px}
+.hero p.lede{font-size:clamp(18px,2vw,21px);max-width:34em;margin:24px 0 0;color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:13px;letter-spacing:.04em;padding:11px 16px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer;border-radius:2px}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary:hover{background:var(--accent);color:var(--paper)}
+.hero-fig{position:relative;margin:0;border:1px solid var(--rule);background:var(--sheet);padding:10px}
+.hero-fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.hero-fig figcaption{display:flex;justify-content:space-between;gap:12px;padding-top:10px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero-fig img{aspect-ratio:4/3}}
+
+/* spec strip */
+.spec{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--rule);background:var(--sheet);margin-top:48px}
+.spec div{padding:14px 16px;border-right:1px solid var(--rule);min-width:0}
+.spec div:last-child{border-right:0}
+.spec dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.spec dd{margin:4px 0 0;font-family:var(--f-display);font-weight:700;font-stretch:85%;font-size:20px;line-height:1.15;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.spec{grid-template-columns:repeat(3,1fr)}.spec div:nth-child(3){border-right:0}.spec div:nth-child(-n+3){border-bottom:1px solid var(--rule)}}
+@media (max-width:480px){.spec{grid-template-columns:repeat(2,1fr)}.spec div{border-right:1px solid var(--rule)!important;border-bottom:1px solid var(--rule)}.spec div:nth-child(2n){border-right:0!important}.spec div:nth-last-child(-n+2){border-bottom:0}}
+
+/* section heads */
+section{padding-block:56px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(34px,5vw,54px);font-weight:800;font-stretch:75%;text-transform:uppercase}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;padding:7px 12px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:hover{border-color:var(--accent)}
+
+/* project sheets */
+.sheets{display:flex;flex-direction:column;gap:28px}
+.sheet{background:var(--sheet);border:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.sheet .body{padding:28px 30px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.sheet h3{font-size:clamp(28px,3.4vw,38px);font-weight:750;font-stretch:80%}
+.sheet .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.sheet h4{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:0 0 4px}
+.sheet ul{margin:0;padding-left:18px}
+.sheet li{margin:2px 0}
+.sheet li::marker{color:var(--accent)}
+.sheet p{margin:0}
+.tb{margin-top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ink);font-family:var(--f-mono);font-size:12px}
+.tb div{padding:7px 10px;border-right:1px solid var(--ink);min-width:0}
+.tb div:last-child{border-right:0}
+.tb span{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.tb b{font-weight:500;display:block;overflow-wrap:anywhere}
+@media (max-width:520px){.tb{grid-template-columns:1fr}.tb div{border-right:0;border-bottom:1px solid var(--ink)}.tb div:last-child{border-bottom:0}}
+.gallery{border-left:1px solid var(--rule);padding:14px;display:grid;gap:10px;grid-template-columns:repeat(6,1fr);align-content:start;min-width:0}
+.gallery button{all:unset;cursor:zoom-in;display:block;position:relative;background:var(--paper);overflow:hidden;outline-offset:2px}
+.gallery button:focus-visible{outline:2px solid var(--accent)}
+.gallery img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.gallery button:hover img{transform:scale(1.03)}
+.gallery .main{grid-column:1/-1;aspect-ratio:16/10}
+.gallery .contain img{object-fit:contain;background:#fff}
+.gallery .t2{grid-column:span 3;aspect-ratio:4/3}
+.gallery .t3{grid-column:span 2;aspect-ratio:1/1}
+.sheet.flip{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.sheet.flip .gallery{order:-1;border-left:0;border-right:1px solid var(--rule)}
+.sheet.textonly{grid-template-columns:1fr}
+.sheet.textonly .body{max-width:none}
+.textonly .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:860px){
+  .sheet,.sheet.flip{grid-template-columns:1fr}
+  .sheet .gallery,.sheet.flip .gallery{order:-1;border:0;border-bottom:1px solid var(--rule)}
+  .sheet .body{padding:22px 18px}
+  .textonly .cols{grid-template-columns:1fr}
+}
+.sheet[hidden]{display:none}
+
+/* experience */
+.exp{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:40px}
+.roles{display:flex;flex-direction:column}
+.roleitem{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.roleitem:first-child{padding-top:0}
+.roleitem .when{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);padding-top:4px;font-variant-numeric:tabular-nums}
+.roleitem h3{font-size:22px;font-weight:700;font-stretch:88%;line-height:1.2}
+.roleitem .org{color:var(--ink-2);margin:2px 0 6px}
+.roleitem ul{margin:0;padding-left:18px}
+.roleitem li::marker{color:var(--accent)}
+.side{display:flex;flex-direction:column;gap:22px}
+.box{background:var(--sheet);border:1px solid var(--rule);padding:20px}
+.box h3{font-size:20px;font-weight:700;font-stretch:85%;text-transform:uppercase;margin-bottom:10px}
+.box dl{margin:0;display:grid;gap:12px}
+.box dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.box dd{margin:2px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tags span{font-family:var(--f-mono);font-size:12px;padding:3px 8px;background:var(--accent-soft);color:var(--ink);border-radius:2px}
+@media (max-width:860px){.exp{grid-template-columns:1fr}.roleitem{grid-template-columns:1fr;gap:4px}}
+
+/* contact band */
+.band{background:var(--band);color:var(--band-fg);margin-top:24px}
+.band .wrap{padding-block:64px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+.band h2{font-size:clamp(40px,6vw,72px);font-weight:800;font-stretch:72%;text-transform:uppercase}
+.band p{color:var(--band-2);max-width:32em}
+.contact{display:flex;flex-direction:column;gap:12px}
+.contact .row{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid color-mix(in srgb,var(--band-fg) 18%,transparent);padding-top:12px;flex-wrap:wrap}
+.contact .row span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--band-2)}
+.contact .row a,.contact .row code{color:var(--band-fg);font-family:var(--f-mono);font-size:15px;user-select:all;overflow-wrap:anywhere}
+.copy{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--band-2);padding:4px 8px;color:var(--band-fg)}
+.copy:focus-visible{outline:2px solid var(--band-fg);outline-offset:2px}
+footer{background:var(--band);color:var(--band-2);font-family:var(--f-mono);font-size:12px}
+footer .wrap{padding-block:18px;border-top:1px solid color-mix(in srgb,var(--band-fg) 12%,transparent);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){.band .wrap{grid-template-columns:1fr}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,11,17,.92);display:grid;place-items:center;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb[hidden],.lb [hidden]{display:none!important}
+.lb figure{margin:0;max-width:min(1200px,100%);display:flex;flex-direction:column;gap:10px;align-items:center}
+.lb img{max-height:80vh;max-width:100%;object-fit:contain;background:#fff}
+.lb figcaption{color:#d7dce6;font-family:var(--f-mono);font-size:13px;text-align:center}
+.lb .x,.lb .nv{all:unset;position:absolute;color:#fff;font-family:var(--f-mono);font-size:14px;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.3)}
+.lb .x{top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px))}
+.lb .prev{left:max(16px,env(safe-area-inset-left,0px));top:50%}
+.lb .next{right:max(16px,env(safe-area-inset-right,0px));top:50%}
+.lb button:focus-visible{outline:2px solid #fff}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top">Taro Ishihara</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="role">Mechanical Engineering · University of Colorado Boulder</p>
+        <h1>Taro<span>Ishihara</span></h1>
+        <p class="lede">Engineering Portfolio</p>
+        <div class="cta">
+          <a class="btn primary" href="#work">View projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/taroishihara/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+      <figure class="hero-fig">
+        <img src="img/cygnus-robot.jpg" alt="Cygnus four-wheeled robot base with the redesigned sheet-metal frame">
+        <figcaption><span class="label">Cygnus robot base</span><span class="label">PM&amp;PM · 2026</span></figcaption>
+      </figure>
+    </div>
+
+  </div>
+</header>
+
+<main>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" id="f-intern" data-f="intern" aria-pressed="false">Internship</button>
+        <button class="chip" id="f-research" data-f="research" aria-pressed="false">Research</button>
+        <button class="chip" id="f-school" data-f="school" aria-pressed="false">Coursework &amp; clubs</button>
+      </div>
+    </div>
+
+    <div class="sheets">
+
+      <article class="sheet" data-cat="intern">
+        <div class="body">
+          <div class="kicker">Mechanical Engineering Intern · PM&amp;PM</div>
+          <h3>Cygnus Robot Frame Redesign</h3>
+          <div><h4>Goal</h4><ul><li>Reduce weight, cost, and part count</li><li>Eliminate welding and simplify manufacturing</li><li>Maintain structural strength and functionality</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Replace welded steel tubing with a single laser-cut sheet</li><li>Use bends to form the frame and add rigidity</li><li>Integrate mounting features directly into the sheet-metal design</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>PM&amp;PM</b></div><div><span>Tools</span><b>ZW3D · Sheet metal</b></div><div><span>Date</span><b>Summer 2026</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main contain" data-cap="Sheet-metal frame assembly in CAD"><img src="img/cygnus-cad.jpg" alt="CAD model of the sheet-metal Cygnus frame" loading="lazy"></button>
+          <button class="t3 contain" data-cap="Flat pattern of the laser-cut sheet"><img src="img/cygnus-flat.jpg" alt="Flat pattern of the frame" loading="lazy"></button>
+          <button class="t3 contain" data-cap="Formed frame tray"><img src="img/cygnus-tray.jpg" alt="Bent sheet-metal tray" loading="lazy"></button>
+          <button class="t3 contain" data-cap="Formed bracket"><img src="img/cygnus-bracket-a.jpg" alt="Sheet-metal bracket" loading="lazy"></button>
+          <button class="t3 contain" data-cap="Bracket flat pattern"><img src="img/cygnus-bracket-b.jpg" alt="Bracket flat pattern" loading="lazy"></button>
+          <button class="t3" data-cap="Cygnus in the lab"><img src="img/cygnus-lab.jpg" alt="Cygnus robot in the lab" loading="lazy"></button>
+          <button class="t3" data-cap="Integration with electronics"><img src="img/cygnus-wiring.jpg" alt="Cygnus robot with wiring and emergency stop" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="sheet flip" data-cat="intern">
+        <div class="body">
+          <div class="kicker">Mechanical Engineering Intern · PM&amp;PM</div>
+          <h3>PECT Pipeline Inspection Robot CAD Model</h3>
+                    <div><h4>Goal</h4><ul><li>Create a manufacturable CAD model for a pipeline inspection robot</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Translate supervisor-provided 2D drawings into detailed 3D CAD</li><li>Model components and assemble them to verify fit and sensor integration</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>PM&amp;PM</b></div><div><span>Tools</span><b>ZW3D · Assembly</b></div><div><span>Date</span><b>Summer 2026</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main contain" data-cap="Robot frame assembly"><img src="img/pect-frame.jpg" alt="CAD assembly of the PECT robot frame" loading="lazy"></button>
+          <button class="t2 contain" style="grid-column:1/-1;aspect-ratio:5/2" data-cap="Motorized rail"><img src="img/pect-rail.jpg" alt="CAD model of the motorized rail" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="sheet" data-cat="research">
+        <div class="body">
+          <div class="kicker">Undergraduate Research Assistant</div>
+          <h3>Residence Time Distribution Analysis</h3>
+                    <div><h4>Goal</h4><ul><li>Evaluate whether static mixers can function effectively as chemical reactors for crystallization</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Evaluate RTD performance of 4 mixer shapes (Shell, Farfalle, Rotelle, Hourglass) and an empty pipe</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>CU Boulder</b></div><div><span>Analysis</span><b>Residence time distribution</b></div><div><span>Date</span><b>Summer 2025</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main contain" data-cap="RTD curves for the four mixer shapes and empty pipe"><img src="img/rtd-plot.jpg" alt="Plot of residence time distribution curves" loading="lazy"></button>
+          <button class="t2" style="grid-column:1/-1;aspect-ratio:16/9" data-cap="Static mixer test setup"><img src="img/rtd-lab.jpg" alt="Lab bench with the static mixer setup" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="sheet flip" data-cat="school">
+        <div class="body">
+          <div class="kicker">Mechanical Sub-Team: Cart/Restraint System</div>
+          <h3>Theme Park Engineering &amp; Design Club</h3>
+          <div><h4>Goal</h4><ul><li>Create a mock pendulum swing amusement park ride for a ride engineering design competition</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Design/assemble the cart system</li><li>Focus on ratchet and clank restraint system for riders</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>CU Boulder club</b></div><div><span>Sub-team</span><b>Mechanical</b></div><div><span>Focus</span><b>Cart &amp; restraint</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main" data-cap="Restraint prototypes"><img src="img/restraint-prototypes.jpg" alt="Laser-cut restraint prototypes" loading="lazy"></button>
+          <button class="t2" style="grid-column:1/-1;aspect-ratio:16/10" data-cap="Finished ride and cart"><img src="img/ride-cart.jpg" alt="Finished pendulum ride with cart" loading="lazy" style="object-position:center 35%"></button>
+        </div>
+      </article>
+
+      <article class="sheet" data-cat="school">
+        <div class="body">
+          <div class="kicker">Manufacturing Engineer (Component Design Class)</div>
+          <h3>Drill-Powered Trike</h3>
+          <div><h4>Goal</h4><ul><li>Design and manufacture a drill-powered vehicle optimized for endurance and reliability</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Led manufacturing operations</li><li>Machined frame components and welded the vehicle frame</li><li>Coordinated fabrication and assembly to ensure components met design and performance requirements</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>CU Boulder</b></div><div><span>Process</span><b>Machining · Welding</b></div><div><span>Role</span><b>Mfg. lead</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main contain" data-cap="Welded frame"><img src="img/trike-frame.jpg" alt="Welded trike frame" loading="lazy"></button>
+          <button class="t2" data-cap="Finished trike"><img src="img/trike.jpg" alt="Finished drill-powered trike" loading="lazy"></button>
+          <button class="t2" data-cap="Drill drive"><img src="img/trike-drive.jpg" alt="Drill mounted as the drive" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="sheet flip" data-cat="school">
+        <div class="body">
+          <div class="kicker">GEEN Freshman Project · Electronics Lead</div>
+          <h3>Informational Recycling Bin</h3>
+          <div><h4>Goal</h4><ul><li>Incentivize recycling aluminum cans and educate people about the importance of recycling</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Created an informational recycling bin with a counter for the number of cans recycled and the hours of total energy saved</li><li>LED light-up animation</li><li>Informational poster displaying stats about the importance of recycling</li></ul></div>
+          <div><h4>Electronics lead</h4><ul><li>Created and soldered circuit of LCD display, LED strip, and IR sensor onto protoboard</li><li>Wrote Arduino code</li><li>Integrated electronics onto main lid</li></ul></div>
+          <div class="tb"><div><span>Org</span><b>CU Boulder</b></div><div><span>Tools</span><b>Arduino</b></div><div><span>Shown</span><b>Design Expo</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="main" data-cap="Lid with the informational board"><img src="img/geen-bin.jpg" alt="Recycling bin lid with informational board" loading="lazy" style="object-position:center 40%"></button>
+          <button class="t3" data-cap="LCD counter and LED strip"><img src="img/geen-display.jpg" alt="LCD counter on the lid" loading="lazy"></button>
+          <button class="t3" data-cap="Integrating the electronics into the lid"><img src="img/geen-soldering.jpg" alt="Taro soldering the electronics" loading="lazy"></button>
+          <button class="t3 contain" data-cap="Circuit schematic"><img src="img/geen-schematic.jpg" alt="Hand-drawn circuit schematic" loading="lazy"></button>
+          <button class="t2 contain" data-cap="Arduino code flowchart"><img src="img/geen-flowchart.jpg" alt="Arduino code flowchart" loading="lazy"></button>
+          <button class="t2" data-cap="The team at the Design Expo"><img src="img/geen-team.jpg" alt="Project team at the Design Expo" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="sheet" data-cat="school">
+        <div class="body">
+          <div class="kicker">CAD Individual Project</div>
+          <h3>Electric Shaver Reverse Engineering</h3>
+          <div><h4>Goal</h4><ul><li>Reverse engineer and model any mechanical item in SolidWorks</li></ul></div>
+          <div><h4>Approach</h4><ul><li>Modeled the head of an electric shaver, including the head cap, foil cover, razor blades, suspension system, and motor</li></ul></div><div><h4>Role</h4><ul><li>A personal project to strengthen my SolidWorks skills, especially ergonomics and inorganic shapes on consumer products</li></ul></div>
+          <div class="tb"><div><span>Type</span><b>Self-directed</b></div><div><span>Tools</span><b>SolidWorks</b></div><div><span>Focus</span><b>Ergonomics</b></div></div>
+        </div>
+        <div class="gallery">
+          <button class="t2 contain" style="aspect-ratio:3/4" data-cap="Exploded view"><img src="img/shaver-exploded.jpg" alt="Exploded view of the shaver head model" loading="lazy"></button>
+          <button class="t2 contain" style="aspect-ratio:3/4" data-cap="Assembled view"><img src="img/shaver-assembled.jpg" alt="Assembled shaver head model" loading="lazy"></button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="band" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact">
+      <div class="row"><span>Email</span><code id="em">taro.ishihara3@gmail.com</code><button class="copy" id="copy-email" type="button">Copy</button></div>
+      <div class="row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/taroishihara/" target="_blank" rel="noopener">linkedin.com/in/taroishihara ↗</a></div>
+    </div>
+  </div>
+</div>
+<footer><div class="wrap"><span>© 2026 Taro Ishihara</span><span>Engineering Portfolio</span></div></footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="x" id="lb-close" type="button">Close ✕</button>
+  <button class="nv prev" id="lb-prev" type="button" aria-label="Previous image">←</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="nv next" id="lb-next" type="button" aria-label="Next image">→</button>
+</div>
+
+<script>
+(function(){
+  // filters
+  const chips=[...document.querySelectorAll('.chip')], sheets=[...document.querySelectorAll('.sheet')];
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.setAttribute('aria-pressed',String(x===c)));
+    const f=c.dataset.f; sheets.forEach(s=>{s.hidden=!(f==='all'||s.dataset.cat===f)});
+  }));
+  // lightbox
+  const lb=document.getElementById('lb'), img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap');
+  let set=[], i=0, last=null;
+  function show(){const b=set[i];const im=b.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=b.dataset.cap||im.alt;
+    document.getElementById('lb-prev').hidden=document.getElementById('lb-next').hidden=set.length<2}
+  document.querySelectorAll('.gallery button').forEach(b=>b.addEventListener('click',()=>{
+    set=[...b.parentElement.querySelectorAll('button')]; i=set.indexOf(b); last=b; show(); lb.hidden=false; document.getElementById('lb-close').focus();
+  }));
+  function close(){lb.hidden=true; if(last) last.focus()}
+  document.getElementById('lb-close').onclick=close;
+  document.getElementById('lb-prev').onclick=()=>{i=(i-1+set.length)%set.length;show()};
+  document.getElementById('lb-next').onclick=()=>{i=(i+1)%set.length;show()};
+  lb.addEventListener('click',e=>{if(e.target===lb)close()});
+  document.addEventListener('keydown',e=>{if(lb.hidden)return;
+    if(e.key==='Escape')close(); if(e.key==='ArrowLeft')document.getElementById('lb-prev').click(); if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
+  // copy email
+  const cb=document.getElementById('copy-email');
+  cb.addEventListener('click',()=>{const t=document.getElementById('em').textContent;
+    const done=()=>{cb.textContent='Copied';setTimeout(()=>cb.textContent='Copy',1600)};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,sel)}else sel();
+    function sel(){const r=document.createRange();r.selectNodeContents(document.getElementById('em'));const s=getSelection();s.removeAllRanges();s.addRange(r);cb.textContent='Selected'}
+  });
+})();
+</script>
+</body>
+</html>
